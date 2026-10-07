@@ -1,0 +1,185 @@
+/* Main Page Layout */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+}
+
+/* Header */
+.header {
+  border-bottom: 2px solid #333333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #222222;
+}
+
+/* Sections */
+.section {
+  border: 1px solid #dddddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+}
+
+.section h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 6px;
+  color: #333333;
+}
+
+.section p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* Customer Dropdown */
+.customer-select-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f5f5f5;
+}
+
+select {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #999999;
+  background-color: #ffffff;
+  min-width: 200px;
+}
+
+/* Account Details */
+.account-details {
+  margin-bottom: 8px;
+}
+
+/* Tables */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.table th,
+.table td {
+  border: 1px solid #cccccc;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #eeeeee;
+  font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.empty-state {
+  color: #666666;
+  font-style: italic;
+}
+
+/* AI Assistant & Chat */
+.ai-section {
+  background-color: #f7f9fa;
+  border-color: #ccd5db;
+}
+
+.chat-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.chat-form input[type="text"] {
+  flex: 1;
+  padding: 7px 10px;
+  font-size: 14px;
+  border: 1px solid #999999;
+}
+
+.button {
+  padding: 7px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #005a9c;
+  color: #ffffff;
+  border: 1px solid #004080;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #004080;
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  border-color: #aaaaaa;
+  cursor: not-allowed;
+  color: #666666;
+}
+
+/* Chat History */
+.chat-history {
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  padding: 12px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  padding: 8px 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  border-left: 3px solid transparent;
+}
+
+.message-user {
+  background-color: #eef4f8;
+  border-left-color: #005a9c;
+}
+
+.message-ai {
+  background-color: #f2f2f2;
+  border-left-color: #28a745;
+}
+
+/* Status Messages */
+.status-message {
+  padding: 8px 10px;
+  margin: 10px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.status-message.loading {
+  color: #005a9c;
+  background-color: #eef4f8;
+  border: 1px solid #b8d4e8;
+}
+
+.status-message.error {
+  color: #a00000;
+  background-color: #fde8e8;
+  border: 1px solid #e8b8b8;
+}

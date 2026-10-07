@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="header">
+    <h1>BANKING AI ASSISTANT</h1>
+  </div>
+
+  <!-- Customer Dropdown Section -->
+  <div class="section customer-select-section">
+    <label for="customerSelect"><strong>Customer:</strong></label>
+    <select
+      id="customerSelect"
+      [(ngModel)]="selectedCustomerId"
+      (change)="onCustomerChange()"
+    >
+      <option *ngFor="let c of customers" [value]="c.id">
+        {{ c.name }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Loading & Error Indicators -->
+  <div *ngIf="loading" class="status-message loading">
+    Loading...
+  </div>
+  <div *ngIf="errorMessage" class="status-message error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading">
+    <!-- Customer Information -->
+    <div class="section" *ngIf="selectedCustomer">
+      <h2>Customer Information</h2>
+      <p><strong>Name:</strong> {{ selectedCustomer.name }}</p>
+      <p><strong>Email:</strong> {{ selectedCustomer.email }}</p>
+    </div>
+
+    <!-- Account Details -->
+    <div class="section" *ngIf="accounts.length > 0">
+      <h2>Account</h2>
+      <div *ngFor="let acc of accounts" class="account-details">
+        <p><strong>Account Number:</strong> {{ acc.accountNumber }}</p>
+        <p><strong>Balance:</strong> Rs. {{ acc.balance | number:'1.2-2' }}</p>
+      </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="section">
+      <h2>Recent Transactions</h2>
+      <table class="table" *ngIf="transactions.length > 0; else noTransactions">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tx of transactions">
+            <td>{{ tx.date | date:'yyyy-MM-dd' }}</td>
+            <td>{{ tx.category }}</td>
+            <td>{{ tx.description }}</td>
+            <td>Rs. {{ tx.amount | number:'1.2-2' }}</td>
+            <td>{{ tx.transactionType }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noTransactions>
+        <p class="empty-state">No recent transactions found.</p>
+      </ng-template>
+    </div>
+
+    <!-- AI Banking Assistant -->
+    <div class="section ai-section">
+      <h2>AI Banking Assistant</h2>
+      
+      <div class="chat-form">
+        <label for="aiMessageInput"><strong>Message:</strong></label>
+        <input
+          id="aiMessageInput"
+          type="text"
+          [(ngModel)]="userMessage"
+          (keyup.enter)="askAI()"
+          placeholder="Ask a question (e.g., What is my balance?)"
+        />
+        <button
+          type="button"
+          class="button"
+          [disabled]="aiLoading || !userMessage.trim()"
+          (click)="askAI()"
+        >
+          Ask AI
+        </button>
+      </div>
+
+      <div *ngIf="aiLoading" class="status-message loading">
+        AI is thinking...
+      </div>
+      <div *ngIf="aiErrorMessage" class="status-message error">
+        {{ aiErrorMessage }}
+      </div>
+
+      <!-- Chat History -->
+      <div class="chat-history" *ngIf="messages.length > 0">
+        <div
+          *ngFor="let msg of messages"
+          class="message"
+          [ngClass]="msg.sender === 'user' ? 'message-user' : 'message-ai'"
+        >
+          <strong>{{ msg.sender === 'user' ? 'You:' : 'AI:' }}</strong>
+          <span> {{ msg.text }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
